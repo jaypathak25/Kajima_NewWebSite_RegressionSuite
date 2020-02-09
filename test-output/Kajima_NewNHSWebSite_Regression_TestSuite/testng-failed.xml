@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" configfailurepolicy="continue" guice-stage="DEVELOPMENT" name="Failed suite [Kajima_NewNHSWebSite_Regression_TestSuite]" parallel="tests">
+  <test thread-count="1" name="kajima_newnhswebsite_homepgae_Regression_testcases(failed)" parallel="tests">
+    <classes>
+      <class name="kajima.newnhswebsite.runner.TestRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="feature" invocation-numbers="0 1"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- kajima.newnhswebsite.runner.TestRunner -->
+    </classes>
+  </test> <!-- kajima_newnhswebsite_homepgae_Regression_testcases(failed) -->
+</suite> <!-- Failed suite [Kajima_NewNHSWebSite_Regression_TestSuite] -->
