@@ -19,6 +19,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 
+import kajima.newnhswebsite.pom_pages.Basket;
+import kajima.newnhswebsite.pom_pages.BookingWidget;
+import kajima.newnhswebsite.pom_pages.HomePage;
+import kajima.newnhswebsite.pom_pages.LoginPage;
+import kajima.newnhswebsite.pom_pages.SearchResultPage;
 import kajima.newnhswebsite.utils.TestUtils;
 
 
@@ -28,10 +33,11 @@ public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
 
+
 	//Created a constructor of TestBase class to initiate the variable of property file
 	
 	 public TestBase() {
-	  
+		 	  
 	  try { 
 		  prop = new Properties (); 
 		  FileInputStream ip = new FileInputStream("C:\\Users\\User\\Desktop\\Automation\\Workspace\\Kajima_NewNHSWebSite_BDD_Regression\\"

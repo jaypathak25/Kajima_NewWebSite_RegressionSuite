@@ -8,10 +8,13 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 @CucumberOptions(
 		
 		
-		features = "C:\\Users\\User\\Desktop\\Automation\\"
-				+ "Workspace\\Kajima_NewNHSWebSite_BDD_Regression\\"
-				+ "src\\test\\java\\kajima\\newnhswebsite\\features", //the path of the feature files
+	features = "C:\\Users\\User\\Desktop\\Automation\\"
+				+ "Workspace\\Kajima_NewNHSWebSite_BDD_Regression\\src\\"
+				+ "test\\java\\kajima\\newnhswebsite\\features", //the path of the feature files
 		
+		
+	//	features = "C:\\Users\\User\\Desktop\\Automation\\Workspace\\Kajima_NewNHSWebSite_BDD_Regression\\src\\"
+		//		+ "test\\java\\kajima\\newnhswebsite\\features\\HomePage.feature",
 		
 		glue = {"kajima.newnhswebsite.stepDefinition"},
 		
@@ -28,5 +31,6 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 public class TestRunner extends AbstractTestNGCucumberTests {
 		
+
 
 }

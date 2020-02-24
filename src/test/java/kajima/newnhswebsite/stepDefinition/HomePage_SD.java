@@ -4,33 +4,38 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import cucumber.api.java.After;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import kajima.newnhswebsite.base.TestBase;
+import kajima.newnhswebsite.pom_pages.Basket;
+import kajima.newnhswebsite.pom_pages.BookingWidget;
 import kajima.newnhswebsite.pom_pages.HomePage;
+import kajima.newnhswebsite.pom_pages.LoginPage;
 import kajima.newnhswebsite.pom_pages.SearchResultPage;
 import kajima.newnhswebsite.utils.TestUtils;
 
 public class HomePage_SD extends TestBase {
 	
-    HomePage home_page;
+
+	HomePage home_page;
+	LoginPage login_page;
+	Basket basket_page;
 	SearchResultPage search_result_page;
+	BookingWidget booking_widget_page;
 	
+	//Created a constructor of the class to initiate the object of page classes
+	public HomePage_SD() {
+		home_page =  new HomePage();	
+		login_page =  new LoginPage();	
+		basket_page = new Basket();
+		search_result_page = new SearchResultPage();
+		booking_widget_page =  new BookingWidget();	
+	}
 	
 	//**************Pre condition (Below Given and When condition are common for all the Tests)*****************
-	@BeforeTest
-	@Given("^User opens browser and enters New NHS Pre Prod URL$")
-	public void user_opens_browser_and_enters_New_NHS_Pre_Prod_URL(){
-		TestBase.intialisation();
-		home_page =  new HomePage();	
-		search_result_page = new SearchResultPage();
-	}
-
+	
 	@When("^User have gone to the homepage on a desktop device$")
 	public void i_have_gone_to_the_homepage_on_a_desktop_device(){
 		home_page.verifyHomePage();
@@ -39,16 +44,15 @@ public class HomePage_SD extends TestBase {
 	//*****************HomePage - To ensure links/images are responding successfully and none of them are broken**************************
 	@Test(priority=1)
 	@Then("^User check all the link & Image URLs, with http connection api and get the response$")
-	public void i_click_on_the_link_one_by_one() throws MalformedURLException, IOException {
-		home_page.verifyBrokenLinksImagesOnHp();
-
-	}
+    public void i_click_on_the_link_one_by_one() throws MalformedURLException, IOException {
+		 home_page.verifyBrokenLinksImagesOnHp();
+    }
 	
 	//*****************HomePage  - Click all the links/images, navigate to relevant screen and Navigate back to Home screen***************
     @Test(priority=2)
 	@Then("^User expect to click all the Home page links/images one by one User navigate back to Home screen$")
 	public void i_expect_to_click_all_the_Home_page_links_and_images_one_by_one() throws MalformedURLException, IOException {
-		home_page.clickLinksnImagesnBackOnHp();
+	      home_page.clickLinksnImagesnBackOnHp();
 	}
 
     
@@ -64,7 +68,7 @@ public class HomePage_SD extends TestBase {
     	home_page.clickFirstSearchField();
     }
 
-    @Then("^User expect the order to be in Row-1 & Row-2 as per the acceptance Criteria$")
+    @Then("^User expect the order to be in Row1 & Row2 as per the acceptance Criteria$")
     public void user_expect_the_order_to_be_in_Row_Row_as_per_the_acceptance_Criteria() {
     	home_page.verifyPopUpGrid();
     }
@@ -85,7 +89,7 @@ public class HomePage_SD extends TestBase {
     }
 
     @Then("^Click Find a Room button$")
-    public void click_Find_a_Room_button() {
+    public void click_Find_a_Room_button() throws InterruptedException {
     	home_page.clkFindRoomBtn();	
     }
     
@@ -103,17 +107,17 @@ public class HomePage_SD extends TestBase {
     }
 
     @Then("^User clicks on 'Location' field and able to enter Postcode, location or propertyname$")
-    public void user_is_able_to_enter_Postcode_location_or_propertyname(){
+    public void user_is_able_to_enter_Postcode_location_or_propertyname() throws InterruptedException{
     	home_page.clickSecondSearchField();
     }
 
     @Then("^User expect a dropdown to appear displaying upto '5' matched results and allow user to select$")
-    public void user_expect_a_dropdown_to_appear_displaying_upto_matched_results_and_allow_user_to_select(){
+    public void user_expect_a_dropdown_to_appear_displaying_upto_matched_results_and_allow_user_to_select() throws InterruptedException{
     	home_page.selectDropDownOpn();
     }
     
     @Then("^Select Find a Room button$")
-    public void Select_Find_a_Room_button(){
+    public void Select_Find_a_Room_button() throws InterruptedException{
     	home_page.clkFindRoomBtn();
     }
     
@@ -124,9 +128,9 @@ public class HomePage_SD extends TestBase {
     }
     
     //************************Home Page - Search results by not selecting any search criteria and click Find a Room button**************
-    @Test
+    @Test(priority=5)
     @Then("^Click Find a Room button without entering Room type or Location$")
-    public void click_Find_a_Room_button_without_entereing_Room_type_or_Location(){
+    public void click_Find_a_Room_button_without_entereing_Room_type_or_Location() throws InterruptedException{
     	home_page.clkFindRoomBtn();
     }
 
@@ -137,9 +141,9 @@ public class HomePage_SD extends TestBase {
     }
 
     //*********************Home Page - Search results by selecting both Room types and Location and click Find a Room button************
-    @Test
+    @Test(priority=6)
     @Then("^User selects Room type and Location and click find a Room button$")
-    public void user_selects_Room_type_and_Location() {
+    public void user_selects_Room_type_and_Location() throws InterruptedException {
     	home_page.clickFirstSearchField();
     	home_page.selectSingleOpn();
     	home_page.clickSecondSearchField();
@@ -154,9 +158,4 @@ public class HomePage_SD extends TestBase {
 
     }
     
-	//***********************************After test method************************************************//
-	@AfterTest
-	@Then("^User closes the browser$") public void User_closes_browser() {
-	driver.quit(); 
-	}
 }

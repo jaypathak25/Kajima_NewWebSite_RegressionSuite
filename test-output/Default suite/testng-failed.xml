@@ -3,13 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="kajima.newnhswebsite.runner.TestRunner">
+      <class name="kajima.newnhswebsite.stepDefinition.HomePage_SD">
         <methods>
-          <include name="setUpClass"/>
-          <include name="feature" invocation-numbers="0 1"/>
-          <include name="tearDownClass"/>
+          <include name="user_expect_to_see_the_Second_search_field_as_a_free_Text_field_labelled_as"/>
+          <include name="click_Find_a_Room_button_without_entereing_Room_type_or_Location"/>
+          <include name="user_selects_Room_type_and_Location"/>
+          <include name="user_expect_to_see_the_first_search_field_as_a_dropdown_labelled_as_Select_room_type"/>
         </methods>
-      </class> <!-- kajima.newnhswebsite.runner.TestRunner -->
+      </class> <!-- kajima.newnhswebsite.stepDefinition.HomePage_SD -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
