@@ -297,4 +297,11 @@ public class SearchResultPage_SD extends TestBase {
 		public void User_navigate_back_to_searchresult_page() {
 
 		}
+		
+//***********************Non Logged in user - Search Result Page - Click Load more link********************
+		@Test(priority=13)
+		@Then("^User clicks the Load more button on the screen$")
+		public void User_clicks_the_Load_more_button_on_the_screen() throws InterruptedException {
+			search_result_page.clickLoadMoreBtn();
+		}
 }

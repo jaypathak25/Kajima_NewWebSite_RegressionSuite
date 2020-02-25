@@ -12,7 +12,8 @@ Background:
     Given User opens browser and enters the New NHS Pre Prod URL
     When User have gone to the homepage
     Then User enters the search criteria and clicks on Find a Room button
-    
+   
+
 #@Test1
 #Scenario: Search Result Page - To ensure links/images are responding successfully and none of them are broken
     #Then User check all the link & Image URLs, with http connection api and get the response
@@ -90,7 +91,7 @@ Scenario: Non Logged in user - Search Result Page - Click Room Name link
 		Then User clicks the Room name link on the search result page 
 		And User verifies the Room details page
 		And User navigate back to result page
-		And user quit the browser
+		And user quit the browser	
 
 @Test12
 Scenario: Non Logged in user - Search Result Page - Click Login to view pricing link
@@ -98,5 +99,9 @@ Scenario: Non Logged in user - Search Result Page - Click Login to view pricing 
 		And User verifies the Login page
 		And User navigate back to search result page
 		And user quit the browser
+@Test13
+Scenario: Non Logged in user - Search Result Page - Click Load more link
+		Then User clicks the Load more button on the screen
+		And user quit the browser
 
-     
+

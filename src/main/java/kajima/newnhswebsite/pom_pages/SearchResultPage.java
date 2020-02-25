@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,6 +22,8 @@ import kajima.newnhswebsite.base.TestBase;
 import kajima.newnhswebsite.utils.TestUtils;
 
 public class SearchResultPage extends TestBase {
+	
+	int noofrooms;
 	
 	@FindBy(xpath = "//h3[@class = 'search-results__info']//span")
 	WebElement srchRsltLocn;
@@ -79,14 +82,17 @@ public class SearchResultPage extends TestBase {
 	@FindBy(xpath = "//button[text() = 'Show rooms']")
 	List<WebElement> showRoomsLinks;
 	
-	@FindBy(xpath = "//a[contains(@href,'properties')]")
+	@FindBy(xpath = "//a[contains(@href,'propertie')]")
 	List<WebElement> propNameLinks;
 	
-	@FindBy(xpath = "//a[contains(@href,'rooms')]")
+	@FindBy(xpath = "//*[@class = 'space-list-item__details__name']//a[contains(.,'room')]")
 	List<WebElement> roomNameLinks;
 	
 	@FindBy(xpath = "//a[@class = 'space-list-item__room_pricing' and @href = '/users/sign_in']")
 	List<WebElement> viewPricingLinks;
+	
+	@FindBy(xpath = "//button[@class = 'button button--tertiary']")
+	WebElement loadMoreBtn;
 	
 	
 	
@@ -99,13 +105,6 @@ public class SearchResultPage extends TestBase {
 		Thread.sleep(1000);
 		String srchRslt = srchResults.getText();
 		System.out.println("Search Result contains Location and number of Rooms/Properties as "+ srchRslt);
-
-		//	if (rsltLocn !=null) {
-		//System.out.println("Search Result contains Location as " + rsltLocn + " and Rooms/properties found are " +rsltRooms + " and " + rsltProps );
-		//}else
-		//{
-		//System.out.println("Rooms/properties found are " + rsltRooms + " and " + rsltProps );
-		//}
 	}
 	
 	
@@ -290,67 +289,63 @@ public class SearchResultPage extends TestBase {
 		}
 		
 		public void clickPropNameLinks() throws InterruptedException {
-			int oo = propNameLinks.size();
-			System.out.println("Number of properties found on the search result screens are" + oo);
+			int noofprops = propNameLinks.size();
+			System.out.println("NO OF props ON THE PAGE "+ noofprops);
 			
-			for(int i = 0;i<oo;i++) {
-				if (propNameLinks.get(i).getAttribute("href")!=null && (!propNameLinks.get(i).getAttribute("href").contains("javascript"))) ;
-				}
-		
-	//	List<WebElement> = 
-			
-			for(WebElement PropName : propNameLinks) {
-				try {
-					PropName.click();
-				}
-				catch(org.openqa.selenium.StaleElementReferenceException ex)
-				{
-					PropName.click();
-				}
-				Thread.sleep(500);
+			for(int i= 1;i<propNameLinks.size();i++) {
+				System.out.println(propNameLinks.get(i).getText());
+				propNameLinks.get(i).click();
+				Thread.sleep(5000);
 				driver.navigate().back();
-			}	
-			
-		//}
-
-		 //for(int i=0;i<linklist.size();i++) {
-			// if(linklist.get(i).getAttribute("href")!=null && (!linklist.get(i).getAttribute("href").contains("javascript"))) 
-			 //{
-			 //activeLinks.add(linklist.get(i));
-			 //} 
-			 // get the size of active link lists 
-			 }
+				Thread.sleep(10000);
+			}
+		}
 		
 		public void clickRoomNameLinks() throws InterruptedException {
-			for(WebElement RoomName : roomNameLinks) {
-				try {
-					RoomName.click();
-				}
-				catch(org.openqa.selenium.StaleElementReferenceException ex)
-				{
-					RoomName.click();
-				}
-				Thread.sleep(500);
+			noofrooms = roomNameLinks.size();
+			System.out.println("NO OF rooms ON THE PAGE "+ noofrooms);
+			
+			for(int i= 0;i<(roomNameLinks.size()-50);i++) {
+				System.out.println(roomNameLinks.get(i).getText());
+				roomNameLinks.get(i).click();
+				Thread.sleep(5000);
 				driver.navigate().back();
-			}		
+				Thread.sleep(10000);
+			}
 		}
 		
 		public void clickViewPriceLinks() throws InterruptedException {
-			for(WebElement viewPrice : viewPricingLinks) {
-				try {
-					viewPrice.click();
-				}
-				catch(org.openqa.selenium.StaleElementReferenceException ex)
-				{
-					viewPrice.click();
-				}
-				Thread.sleep(500);
+			int nooflinks = viewPricingLinks.size();
+			System.out.println("NO OF LINKS ON THE PAGE "+ nooflinks);
+			
+			for(int i= 0;i<(viewPricingLinks.size()-60);i++) {
+				viewPricingLinks.get(i).click();
+				Thread.sleep(5000);
 				driver.navigate().back();
-			}		
+				Thread.sleep(10000);
+			}
 		}
-
+		
+		public void clickLoadMoreBtn() throws InterruptedException{	
+			try {
+			    while(loadMoreBtn.isEnabled()) {
+			    	 loadMoreBtn.click();
+			    	 Thread.sleep(2000);
+			    }
+			} catch (NoSuchElementException e) {
+				System.out.println("NO MORE PROPERTY IS AVAILABLE FOR DISPLAY");
+			}	
+		}
+		
+		public void clickfirstRoomLink() {
+			noofrooms = roomNameLinks.size();
+			for(int i= 0;i<(noofrooms-(noofrooms-1));i++) {
+			System.out.println(roomNameLinks.get(i).getText());
+		    roomNameLinks.get(i).click();	 
+		  }	
+		}
 }
-
+				
 
 
 

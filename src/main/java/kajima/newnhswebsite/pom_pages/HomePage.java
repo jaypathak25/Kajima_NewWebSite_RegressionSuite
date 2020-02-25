@@ -173,8 +173,8 @@ public class HomePage extends TestBase {
 		}
 		
 		public void clkFindRoomBtn() throws InterruptedException {
+			fndRoomBtn.submit();
 			Thread.sleep(1000);
-			fndRoomBtn.submit();	
 		}
 			
 		public void verifySearchPanel_Location_hp() {		
@@ -306,6 +306,13 @@ public class HomePage extends TestBase {
 		 public void slectBasketLink() {
 			 basketLink.click();
 			 
+		 }
+		 
+		 public void filterResultByRoomType() throws InterruptedException {
+			 srchRoomTypesFld1.click();
+			 clncalOpn3.click();
+			 fndRoomBtn.submit();
+			 Thread.sleep(1000); 
 		 }
 		 
 		 
