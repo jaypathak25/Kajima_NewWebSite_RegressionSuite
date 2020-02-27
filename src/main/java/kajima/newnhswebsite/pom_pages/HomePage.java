@@ -67,6 +67,7 @@ public class HomePage extends TestBase {
 	WebElement srchLocationFld;
 	
 	@FindBy(xpath = "//button[@class = 'button button--secondary']")
+	static
 	WebElement fndRoomBtn;
 	
 	@FindBy(xpath = "//li[@class='location__search-result']//button[@class = 'location__search-result__button']")
@@ -172,7 +173,7 @@ public class HomePage extends TestBase {
 		    Assert.assertEquals(slctmultiOpn, "Room types 4");		
 		}
 		
-		public void clkFindRoomBtn() throws InterruptedException {
+		public static void clkFindRoomBtn() throws InterruptedException {
 			fndRoomBtn.submit();
 			Thread.sleep(1000);
 		}
@@ -239,6 +240,9 @@ public class HomePage extends TestBase {
 			 String bookingOpn = myAccDropDownBooking.getText();
 			 String accountOpn = myAccDropDownAccount.getText();
 			 String logOutOpn = MyAccDropDownlogOut.getText();
+			 Assert.assertEquals(bookingOpn, "Bookings");
+			 Assert.assertEquals(accountOpn, "Account");
+			 Assert.assertEquals(logOutOpn, "Logout");
 			 
 			 System.out.println("Options available in My account dropdown are " + bookingOpn + " , " + accountOpn + " & " + logOutOpn );
 			 
@@ -254,7 +258,7 @@ public class HomePage extends TestBase {
 		
 		    Thread.sleep(10000); 
 		    String mybookingTxt = myAccAllPgVal.getText();
-		    System.out.println("@@@@@@@@@@@ " + mybookingTxt);
+		    Assert.assertEquals(mybookingTxt, "BOOKINGS");
 		 
 		    if(myAccAllPgVal.isDisplayed()) {
 		    	System.out.println("You are on My Bookings screen");
@@ -276,7 +280,7 @@ public class HomePage extends TestBase {
 		
 		    Thread.sleep(10000); 
 		    String myAccAllPgTxt = myAccAllPgVal.getText();
-		    System.out.println("@@@@@@@@@@@ " + myAccAllPgTxt);
+		    Assert.assertEquals(myAccAllPgTxt, "ACCOUNT");
 		 
 		    if(myAccAllPgVal.isDisplayed()) {
 		    	System.out.println("You are on My Account screen");
@@ -293,7 +297,7 @@ public class HomePage extends TestBase {
 		     MyAccDropDownlogOut.click();
 		
 		    String logOutPgTxt = logOutPageVal.getText();
-		    System.out.println("@@@@@@@@@@@ " + logOutPgTxt);
+		    Assert.assertEquals(logOutPgTxt, "Welcome back, please log in");
 		 
 		    if(logOutPageVal.isDisplayed()) {
 		    	System.out.println("You are Logged Out successfully");

@@ -33,7 +33,7 @@ public class Basket_SD extends TestBase {
 
 	
 	@Then("^User navigate to homepage and Login$")
-	public void User_navigate_to_homepage_and_Login$() {
+	public void User_navigate_to_homepage_and_Login$() throws InterruptedException {
 		home_page.verifyHomePage();
 		login_page.loginToApp();
 	}

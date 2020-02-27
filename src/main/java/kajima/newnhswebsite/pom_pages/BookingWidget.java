@@ -46,6 +46,10 @@ public class BookingWidget extends TestBase {
 	@FindBy(xpath = "//div[@class = 'favourite__inner']//button[@class = 'favourite__remove']")
 	List<WebElement> removeBinBtn;
 	
+	@FindBy(xpath = "//*[contains(@fill,'#')]")
+	List<WebElement> saveSpacesToggle;
+	
+	
 	public BookingWidget() 
 	{
 	PageFactory.initElements(driver ,this);	
@@ -143,6 +147,18 @@ public class BookingWidget extends TestBase {
 
 		 }
 	  }	
+	
+	public void clickSaveSpacesToggle() {
+		int noOfHearts = saveSpacesToggle.size();
+		System.out.println("Total number of Hearts on the screens are "+noOfHearts );
+		
+		for(int i=0;i<noOfHearts;i++) {
+			saveSpacesToggle.get(i).click();
+		}
+		
+		
+		
+	}
 	}
 
 

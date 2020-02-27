@@ -11,7 +11,8 @@ Then User navigate to homepage and Login as primary user
 When User search the properties/Rooms from the home page and navigate to search result page
 And User verifies the booking widget
 Then User add the booking to the booking widget 
-  
+
+
 @Test1
 Scenario: Booking widget - Clear all the added booking 
    And User verifies the booking added to the widget
@@ -38,4 +39,10 @@ Scenario: Booking widget - verify Your saved rooms section on the screen
 Scenario: Booking widget - Remove all saved properties/Rooms from the favourite widgets
     Then User verify the Favourite widget and remove the saved properties/rooms
     And User verifies the favourite widgets again
-    And user quit the browser 
+    And user quit the browser
+    
+@Test6
+Scenario: Booking widget - Add save properties/Rooms to the favourite widgets
+		Then User select the heart toggle available on the search result screen 
+		And User verifies that Properties/Rooms have been saved successfully
+		And user quit the browser 

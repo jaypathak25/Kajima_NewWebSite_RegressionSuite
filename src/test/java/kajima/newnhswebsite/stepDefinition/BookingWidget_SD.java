@@ -32,7 +32,7 @@ public class BookingWidget_SD extends TestBase {
 	
 	//**************Pre condition (Below Given and When condition are common for all the Tests)*****************
 	@Then("^User navigate to homepage and Login as primary user$")
-	public void User_navigate_to_homepage_and_Login_as_primary_user() {
+	public void User_navigate_to_homepage_and_Login_as_primary_user() throws InterruptedException {
 		home_page.verifyHomePage();
 		login_page.loginToApp();
 	}
@@ -41,7 +41,7 @@ public class BookingWidget_SD extends TestBase {
 	public void user_search_the_properties_Rooms_from_the_home_page_and_navigate_to_search_result_page() throws InterruptedException {
 	//	home_page.selectMultipleOpn();
 		//home_page.enterSearchCriteria();
-		home_page.clkFindRoomBtn();
+		login_page.clickAddToBookingCond();
 		search_result_page.verifySearchRsltPage();
 		home_page.slectFavHeart();
 
@@ -95,7 +95,7 @@ public class BookingWidget_SD extends TestBase {
 
 	}
 	
-//*************************Scenario: Booking widget - verify Your saved rooms section on the screen************************
+//*************************Scenario: Booking widget - verify Your saved rooms section on the screen****************************
 	@Test(priority = 4)
 	@Then("^verify Your saved rooms section on the screen$")
 	public void verify_Your_saved_rooms_section_on_the_screen(){
@@ -103,7 +103,7 @@ public class BookingWidget_SD extends TestBase {
 
 	}
 
-//***************************Scenario: Booking widget - Remove all saved properties/Rooms from the favourite widgets*********
+//***************************Scenario: Booking widget - Remove all saved properties/Rooms from the favourite widgets***********
 	@Test(priority = 5)
 	@Then("^User verify the Favourite widget and remove the saved properties/rooms$")
 	public void User_verify_the_Favourite_widget_and_remove_the_saved_propertiesrooms() {
@@ -117,6 +117,21 @@ public class BookingWidget_SD extends TestBase {
 		booking_widget_page.verifyFavouriteWidgets();
 		
 	}
+
+//***************************Scenario: Booking widget - Add save properties/Rooms to the favourite widgets********************
+		@Test(priority = 5)
+		@Then("^User select the heart toggle available on the search result screen$")
+		public void User_select_the_heart_toggle_available_on_the_search_result_screen() {
+			booking_widget_page.clickSaveSpacesToggle();
+
+			
+		}
+		
+		@Then("^User verifies that Properties/Rooms have been saved successfully$")
+		public void User_verifies_that_PropertiesRooms_have_been_saved_successfully() {
+		
+			
+		}
 	
 	
 	
