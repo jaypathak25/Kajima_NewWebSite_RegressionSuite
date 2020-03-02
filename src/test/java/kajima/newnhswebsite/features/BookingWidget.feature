@@ -46,3 +46,19 @@ Scenario: Booking widget - Add save properties/Rooms to the favourite widgets
 		Then User select the heart toggle available on the search result screen 
 		And User verifies that Properties/Rooms have been saved successfully
 		And user quit the browser 
+		
+#@Test7
+#Scenario: Booking widget - Click Add new host link and Close Add new host Popup
+
+	#	Then User selects the Add new host link
+#		And User clicks X on the pop up
+	#	And user quit the browser
+
+		
+@Test8
+Scenario: Booking widget - Click Add new host and verify Select host drop down
+		Then User click the Add new host link
+		And User enters all the mandatory fields and click Add host to booking button
+		And User navigates back to Booking widget and verify the select host drop down
+	#	And user quit the browser
+		

@@ -1,12 +1,20 @@
 package kajima.newnhswebsite.pom_pages;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import com.github.javafaker.Faker;
 
 import kajima.newnhswebsite.base.TestBase;
 
@@ -37,7 +45,7 @@ public class BookingWidget extends TestBase {
 	@FindBy(xpath = "//*[@class = 'favourites__inner favourites__inner--empty']//p[text() = 'Your saved rooms will show here']")
 	WebElement favRoomEmptyTxt;
 	
-	@FindBy(xpath = "//span[@class = 'button button--small' and text() = 'Remove']")
+	@FindBy(xpath = "//button[@class = 'button button--small' and text() = 'Remove']")
 	List<WebElement> removeAddedRoomsLink1;
 	
 	@FindBy(xpath = "//h4[@class = 'favourite__title']")
@@ -48,6 +56,57 @@ public class BookingWidget extends TestBase {
 	
 	@FindBy(xpath = "//*[contains(@fill,'#')]")
 	List<WebElement> saveSpacesToggle;
+	
+	@FindBy(xpath = "//a[text() = 'Add new host']")
+	WebElement addNewHostLink;
+	
+	@FindBy(xpath = "//*[@class = 'modal__title-text' and text() = 'Add new host']")
+	WebElement addNewHostPopUpText;
+	
+	@FindBy(xpath = "//button[@class = 'modal__close' and @data-testid = 'modalCloseIcon']")
+	WebElement addNewHostPopUpCloseIcon;
+	
+	@FindBy(id = "first_name")
+	WebElement addNewHostPopUpFirstNameFld;
+	
+	@FindBy(id = "last_name")
+	WebElement addNewHostPopUpLastNameFld;
+	
+	@FindBy(id = "email")
+	WebElement addNewHostPopUpEmailFld;
+	
+	@FindBy(id = "telephone")
+	WebElement addNewHostPopUpPhoneNoFld;
+	
+	@FindBy(xpath = "//button[@type = 'submit' and text() = 'Add host to booking']")
+	WebElement addHostToBookingBtn;
+	
+	@FindBy(xpath = "//*[@class = ' css-iirpvk-SingleValue']")
+	WebElement newCreatedHost;
+	
+	@FindBy(xpath = "//input[@name = 'bookingDate']")
+	WebElement Calpopup;
+	
+	@FindBy(xpath = "//div[contains(@class,'current-month')]")
+	WebElement currentCalMonth;
+	
+	@FindBy(xpath = "//button[text() = 'Next Month']")
+	WebElement navNextMonth;
+	
+	@FindBy(xpath = "//div[contains(@class,'react-datepicker__day react-datepicker__day') and @aria-disabled = 'false']")
+	List<WebElement> allActiveDates;
+	
+	@FindBy(xpath = "//select[@name = 'service-type']")
+	WebElement serviceDropDown;
+	
+	@FindBy(xpath = "//select[@name = 'startTime']")
+	WebElement startTimedd;
+	
+	@FindBy(xpath = "//select[@name = 'startTime']")
+	WebElement endTimedd;
+	
+	
+	
 	
 	
 	public BookingWidget() 
@@ -154,11 +213,70 @@ public class BookingWidget extends TestBase {
 		
 		for(int i=0;i<noOfHearts;i++) {
 			saveSpacesToggle.get(i).click();
-		}
-		
-		
-		
+		}	
+	 }
+	
+	public void clickAddNewHostLink() {
+		addNewHostLink.click();
 	}
+	
+	public void clickNewHostCloseOnPopUp() {
+		addNewHostPopUpCloseIcon.click();
 	}
+	
+	public void verifyNewHostPopUp() {
+		String popUpTitle = addNewHostPopUpText.getText();
+		Assert.assertEquals(popUpTitle, "ADD NEW HOST");
+	}
+	
+	public void fillNewHostForm() {
+		Faker faker = new Faker();
+		String fname = faker.name().firstName();
+		addNewHostPopUpFirstNameFld.sendKeys(fname);
+		String lname = faker.name().lastName();
+		addNewHostPopUpLastNameFld.sendKeys(lname);
+		addNewHostPopUpEmailFld.sendKeys(fname +"@test.com");
+		String teleph = faker.phoneNumber().phoneNumber();
+		addNewHostPopUpPhoneNoFld.sendKeys(teleph);
+		
+		addHostToBookingBtn.click();
+	}
+	
+	public void verifyHostDropDown() {
+		String hostselected = newCreatedHost.getText();
+		System.out.println("$$$$$$$$$$4 "+ hostselected);
+	}
+	
+	public void selectCalDates() throws InterruptedException {
+
+		Calpopup.click();
+		
+		for(WebElement alldates:allActiveDates)
+		{
+			String reqdate=alldates.getText();
+			if(reqdate.equalsIgnoreCase("1"))
+			{
+				alldates.click();
+				break;
+			}
+		}	
+	 }
+	
+	public void selectServices() {
+		Select select = new Select(serviceDropDown);
+		select.selectByIndex(1);
+	}
+	
+	public void selectStartTime() {
+		Select select1 =  new Select(startTimedd);
+		select1.selectByVisibleText("11:30");
+	}
+	
+	public void selectEndTime() {
+		Select select1 =  new Select(endTimedd);
+		select1.selectByVisibleText("12:30");
+	}
+	
+ }
 
 

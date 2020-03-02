@@ -39,24 +39,21 @@ public class BookingWidget_SD extends TestBase {
 	
 	@When("^User search the properties/Rooms from the home page and navigate to search result page$")
 	public void user_search_the_properties_Rooms_from_the_home_page_and_navigate_to_search_result_page() throws InterruptedException {
-	//	home_page.selectMultipleOpn();
-		//home_page.enterSearchCriteria();
+		// home_page.selectMultipleOpn();
+		// home_page.enterSearchCriteria();
 		login_page.clickAddToBookingCond();
 		search_result_page.verifySearchRsltPage();
 		home_page.slectFavHeart();
-
 	}
 
 	@When("^User verifies the booking widget$")
 	public void user_verifies_the_booking_widget() {
 		booking_widget_page.verifyEmptyBookingWidget();
-
 	}
 
 	@Then("^User add the booking to the booking widget$")
 	public void user_add_the_booking_to_the_booking_widget() {
 		search_result_page.clickAddBookBtn();
-
 	}
 	
 //*********************Scenario: Booking widget - Clear all the added booking********************************************
@@ -108,31 +105,58 @@ public class BookingWidget_SD extends TestBase {
 	@Then("^User verify the Favourite widget and remove the saved properties/rooms$")
 	public void User_verify_the_Favourite_widget_and_remove_the_saved_propertiesrooms() {
 		booking_widget_page.verifyFavouriteWidgets();
-		booking_widget_page.clickRemoveBinBtn();
-		
+		booking_widget_page.clickRemoveBinBtn();	
 	}
 	
 	@Then("^User verifies the favourite widgets again$")
 	public void User_verifies_the_favourite_widgets_again() {
-		booking_widget_page.verifyFavouriteWidgets();
-		
+		booking_widget_page.verifyFavouriteWidgets();	
 	}
 
 //***************************Scenario: Booking widget - Add save properties/Rooms to the favourite widgets********************
-		@Test(priority = 5)
-		@Then("^User select the heart toggle available on the search result screen$")
-		public void User_select_the_heart_toggle_available_on_the_search_result_screen() {
-			booking_widget_page.clickSaveSpacesToggle();
-
-			
-		}
+	@Test(priority = 6)
+	@Then("^User select the heart toggle available on the search result screen$")
+	public void User_select_the_heart_toggle_available_on_the_search_result_screen() {
+		booking_widget_page.clickSaveSpacesToggle();		
+	}
 		
-		@Then("^User verifies that Properties/Rooms have been saved successfully$")
-		public void User_verifies_that_PropertiesRooms_have_been_saved_successfully() {
-		
-			
-		}
+	@Then("^User verifies that Properties/Rooms have been saved successfully$")
+	public void User_verifies_that_PropertiesRooms_have_been_saved_successfully() {			
+	}
 	
+//************************Booking widget - Click Add new host link and Close Add new host Popup********************
+	  @Test(priority = 7)  
+	  @Then("^User selects the Add new host link$") 
+	  public void user_selects_the_Add_new_host_link() {
+	  booking_widget_page.clickAddNewHostLink(); 
+	  }
+	  
+	  @Then("^User clicks X on the pop up$")
+	  public void user_clicks_X_on_the_pop_up() throws Throwable {
+		  booking_widget_page.verifyNewHostPopUp();
+		  booking_widget_page.clickNewHostCloseOnPopUp();
+	  }
 	
-	
+//************************Booking widget - Click Add new host link and Close Add new host Popup********************
+	  @Test(priority = 8)  
+	  @Then("^User click the Add new host link$") 
+	  public void user_click_the_Add_new_host_link() {
+	  booking_widget_page.clickAddNewHostLink(); 
+	  }
+	  
+	  @Then("^User enters all the mandatory fields and click Add host to booking button$")
+	  public void User_enters_all_the_mandatory_fields_and_click_Add_host_to_booking_button() throws Throwable {
+		  booking_widget_page.verifyNewHostPopUp();
+		  booking_widget_page.fillNewHostForm();
+	  }
+	  
+	  @Then("^User navigates back to Booking widget and verify the select host drop down$")
+	  public void User_navigates_back_to_Booking_widget_and_verify_the_select_host_drop_down() throws Throwable {
+		  booking_widget_page.verifyHostDropDown();
+		  booking_widget_page.selectCalDates();
+		  booking_widget_page.selectServices();
+		  booking_widget_page.selectStartTime();
+		  booking_widget_page.selectEndTime();
+	  }
+	  
 }

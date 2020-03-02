@@ -1,6 +1,8 @@
 package kajima.newnhswebsite.stepDefinition;
 
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.Test;
+
 import cucumber.api.java.en.Then;
 import kajima.newnhswebsite.base.TestBase;
 import kajima.newnhswebsite.pom_pages.Basket;
@@ -62,8 +64,8 @@ public class Basket_SD extends TestBase {
 		basket_page.clkSrchForRoomsButton();
 		Thread.sleep(10000);
 		search_result_page.verifySearchRsltPage();
-
 	}
+	
 	
 	//***********************************After test method************************************************//
 	@AfterTest

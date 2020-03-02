@@ -3,14 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="kajima.newnhswebsite.stepDefinition.HomePage_SD">
+      <class name="kajima.newnhswebsite.stepDefinition.BookingWidget_SD">
         <methods>
-          <include name="user_expect_to_see_the_Second_search_field_as_a_free_Text_field_labelled_as"/>
-          <include name="click_Find_a_Room_button_without_entereing_Room_type_or_Location"/>
-          <include name="user_selects_Room_type_and_Location"/>
-          <include name="user_expect_to_see_the_first_search_field_as_a_dropdown_labelled_as_Select_room_type"/>
+          <include name="user_click_the_remove_button_displays_next_to_Room_name"/>
+          <include name="User_verify_the_Favourite_widget_and_remove_the_saved_propertiesrooms"/>
+          <include name="verify_Your_saved_properties_section_on_the_screen"/>
+          <include name="User_select_the_heart_toggle_available_on_the_search_result_screen"/>
+          <include name="user_verifies_the_booking_added_to_the_widget"/>
         </methods>
-      </class> <!-- kajima.newnhswebsite.stepDefinition.HomePage_SD -->
+      </class> <!-- kajima.newnhswebsite.stepDefinition.BookingWidget_SD -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
