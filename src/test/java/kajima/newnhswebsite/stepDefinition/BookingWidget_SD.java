@@ -84,48 +84,64 @@ public class BookingWidget_SD extends TestBase {
 
 	}
 	
-//*************************Scenario: Booking widget - verify Your saved properties section on the screen******************
+
+//*****************Scenario: Booking widget - Click Bin Icon to Remove all saved properties/Rooms from the favourite widgets***********
 	@Test(priority = 3)
-	@Then("^verify Your saved properties section on the screen$")
-	public void verify_Your_saved_properties_section_on_the_screen() {
-		booking_widget_page.verifySavedPropWidgets();
-
-	}
-	
-//*************************Scenario: Booking widget - verify Your saved rooms section on the screen****************************
-	@Test(priority = 4)
-	@Then("^verify Your saved rooms section on the screen$")
-	public void verify_Your_saved_rooms_section_on_the_screen(){
-		booking_widget_page.verifySavedRoomsWidgets();
-
-	}
-
-//***************************Scenario: Booking widget - Remove all saved properties/Rooms from the favourite widgets***********
-	@Test(priority = 5)
-	@Then("^User verify the Favourite widget and remove the saved properties/rooms$")
-	public void User_verify_the_Favourite_widget_and_remove_the_saved_propertiesrooms() {
-		booking_widget_page.verifyFavouriteWidgets();
+	@Then("^User verify the Favourite widget and remove the saved properties/rooms by clicking the Bin Icon$")
+	public void User_verify_the_Favourite_widget_and_remove_the_saved_propertiesrooms_by_clicking_the_BinIocn() throws InterruptedException {
+		booking_widget_page.verifyFavPropnRoomsWidgets();
+		booking_widget_page.clickSaveSpacesToggle();
+		booking_widget_page.verifyFavPropnRoomsWidgets();
 		booking_widget_page.clickRemoveBinBtn();	
 	}
 	
 	@Then("^User verifies the favourite widgets again$")
 	public void User_verifies_the_favourite_widgets_again() {
-		booking_widget_page.verifyFavouriteWidgets();	
+		booking_widget_page.verifyFavPropnRoomsWidgets();	
 	}
 
-//***************************Scenario: Booking widget - Add save properties/Rooms to the favourite widgets********************
-	@Test(priority = 6)
+//*****************Scenario: Booking widget - Click the Heart and save properties/Rooms to the favourite widgets and verify the widget*******************
+	@Test(priority = 4)
+	
+	@Then("^verify Your saved properties/rooms section on the screen$")
+	public void verify_Your_saved_propertiesrooms_section_on_the_screen() {
+		booking_widget_page.verifyFavPropnRoomsWidgets();
+		
+	}
+	
 	@Then("^User select the heart toggle available on the search result screen$")
-	public void User_select_the_heart_toggle_available_on_the_search_result_screen() {
+	public void User_select_the_heart_toggle_available_on_the_search_result_screen() throws InterruptedException {
 		booking_widget_page.clickSaveSpacesToggle();		
+		
 	}
 		
 	@Then("^User verifies that Properties/Rooms have been saved successfully$")
-	public void User_verifies_that_PropertiesRooms_have_been_saved_successfully() {			
+	public void User_verifies_that_PropertiesRooms_have_been_saved_successfully() {
+		booking_widget_page.verifyFavPropnRoomsWidgets();
+	
+	}
+	
+	
+//********************Scenario: Booking widget - Click the Heart and Remove save properties/Rooms to the favourite widgets and verify the widget*******
+	@Test(priority = 5)
+		
+	@Then("^verify Your saved properties/rooms widget on the screen$")
+	public void verify_Your_saved_propertiesrooms_widget_on_the_screen() {
+		booking_widget_page.verifyFavPropnRoomsWidgets();
+	}
+		
+	@Then("^User Deselect the heart toggle available on the search result screen$")
+	public void User_Deselect_the_heart_toggle_available_on_the_search_result_screen() throws InterruptedException {
+		booking_widget_page.clickRemoveSpacesToggle();
+	}
+			
+	@Then("^User verifies that Properties/Rooms have been removed successfully$")
+	public void User_verifies_that_PropertiesRooms_have_been_removed_successfully() {			
+		booking_widget_page.verifyFavPropnRoomsWidgets();
 	}
 	
 //************************Booking widget - Click Add new host link and Close Add new host Popup********************
-	  @Test(priority = 7)  
+	  @Test(priority = 6)  
 	  @Then("^User selects the Add new host link$") 
 	  public void user_selects_the_Add_new_host_link() {
 	  booking_widget_page.clickAddNewHostLink(); 
@@ -138,7 +154,7 @@ public class BookingWidget_SD extends TestBase {
 	  }
 	
 //************************Booking widget - Click Add new host link and Close Add new host Popup********************
-	  @Test(priority = 8)  
+	  @Test(priority = 7)  
 	  @Then("^User click the Add new host link$") 
 	  public void user_click_the_Add_new_host_link() {
 	  booking_widget_page.clickAddNewHostLink(); 

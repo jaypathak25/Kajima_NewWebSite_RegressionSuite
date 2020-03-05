@@ -54,8 +54,11 @@ public class BookingWidget extends TestBase {
 	@FindBy(xpath = "//div[@class = 'favourite__inner']//button[@class = 'favourite__remove']")
 	List<WebElement> removeBinBtn;
 	
-	@FindBy(xpath = "//*[contains(@fill,'#')]")
+	@FindBy(xpath = "//*[contains(@fill,'#959595')]")
 	List<WebElement> saveSpacesToggle;
+	
+	@FindBy(xpath = "//*[contains(@fill,'#7bbb54')]")
+	List<WebElement> removeSpacesToggle;
 	
 	@FindBy(xpath = "//a[text() = 'Add new host']")
 	WebElement addNewHostLink;
@@ -106,9 +109,6 @@ public class BookingWidget extends TestBase {
 	WebElement endTimedd;
 	
 	
-	
-	
-	
 	public BookingWidget() 
 	{
 	PageFactory.initElements(driver ,this);	
@@ -147,7 +147,9 @@ public class BookingWidget extends TestBase {
 		}
 	}
 	
-	public void verifySavedPropWidgets() {	
+	public void verifyFavPropnRoomsWidgets() {	
+		
+		//Verify save properties widget code
 		try{
 		    if(favPropEmptyTxt!=null && favPropEmptyTxt.isDisplayed()){
 		    	System.out.println("You saved properties widget is empty");
@@ -161,10 +163,9 @@ public class BookingWidget extends TestBase {
 				System.out.println("Name of the Property/Room saved as favourite is : "+ favPropTxt.get(i).getText());
 				}
 			}
-		 }
-
-	
-	public void verifySavedRoomsWidgets() {
+		
+		//Verify save rooms widget code
+		
 		try{
 		    if(favRoomEmptyTxt!=null && favRoomEmptyTxt.isDisplayed()){
 		    	System.out.println("You saved Room widget is empty");
@@ -178,42 +179,37 @@ public class BookingWidget extends TestBase {
 		for(int j=0;j<=removeAddedRoomsLink1.size();j++) {
 			removeAddedRoomsLink1.get(j).click();	
 		}
-	}
-	
-	public void verifyFavouriteWidgets() {
-		try{
-		    if(favPropEmptyTxt!=null && favPropEmptyTxt.isDisplayed()){
-		    	System.out.println("You saved properties widget is empty");
-		    }
-		}catch(Exception e){
-		    System.out.println("Your saved property widget is not empty");
-		}
-		
-		try{
-		    if(favRoomEmptyTxt!=null && favRoomEmptyTxt.isDisplayed()){
-		    	System.out.println("You saved Room widget is empty");
-		    }
-		}catch(Exception e){
-		    System.out.println("Your saved room widget is not empty");
-		}
-	}
+		 }
 	
 	public void clickRemoveBinBtn() {
 
 		System.out.println("!!!!!!!!!!!!!!!! "+ removeBinBtn.size());
-		 for(int k=0;k<removeBinBtn.size();k++) {
-		   removeBinBtn.get(k).click();
-
-		 }
+		   
+		   for(WebElement binIcon : removeBinBtn ) {
+			   binIcon.click();
+		   }
 	  }	
 	
-	public void clickSaveSpacesToggle() {
-		int noOfHearts = saveSpacesToggle.size();
-		System.out.println("Total number of Hearts on the screens are "+noOfHearts );
-		
-		for(int i=0;i<noOfHearts;i++) {
-			saveSpacesToggle.get(i).click();
-		}	
+	public void clickSaveSpacesToggle() throws InterruptedException {
+		Thread.sleep(1000);
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
+
+        int noOfHearts = saveSpacesToggle.size();
+	    System.out.println("Total number of Hearts on the screens are "+noOfHearts );
+	    
+		  for(WebElement saveHrts : saveSpacesToggle ) {
+			  saveHrts.click();
+		  }
+	}
+	
+	public void clickRemoveSpacesToggle() {
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(document.body.scrollHeight, 0)");
+		  int noOfHearts1 = removeSpacesToggle.size();
+		  System.out.println("Total number of Hearts on the screens are "+noOfHearts1);
+		  
+		  for(WebElement removeHrts : removeSpacesToggle ) {
+		  removeHrts.click();
+		  }
 	 }
 	
 	public void clickAddNewHostLink() {
