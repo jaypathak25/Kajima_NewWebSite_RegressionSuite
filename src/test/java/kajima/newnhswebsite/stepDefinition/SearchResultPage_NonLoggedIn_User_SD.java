@@ -19,7 +19,7 @@ import kajima.newnhswebsite.pom_pages.LoginPage;
 import kajima.newnhswebsite.pom_pages.SearchResultPage;
 import kajima.newnhswebsite.utils.TestUtils;
 
-public class SearchResultPage_SD extends TestBase {
+public class SearchResultPage_NonLoggedIn_User_SD extends TestBase {
 	
 	HomePage home_page;
 	LoginPage login_page;
@@ -29,7 +29,7 @@ public class SearchResultPage_SD extends TestBase {
 	HelpAndContactUs help_and_contact_us;
 	
 	//Created a constructor of the class to initiate the object of page classes
-	public SearchResultPage_SD() {
+	public SearchResultPage_NonLoggedIn_User_SD() {
 		home_page =  new HomePage();	
 		login_page =  new LoginPage();	
 		basket_page = new Basket();
@@ -48,10 +48,12 @@ public class SearchResultPage_SD extends TestBase {
 	
 	@Then("^User enters the search criteria and clicks on Find a Room button$")
 	public void User_enters_the_search_criteria_and_clicks_on_Find_a_Room_button() throws InterruptedException{
-	    home_page.enterSearchCriteria();
-	    Thread.sleep(20000);
+	//  home_page.enterSearchCriteria();
+	    Thread.sleep(2000);
 		home_page.clkFindRoomBtn();	
-		Thread.sleep(10000);
+		Thread.sleep(1000);
+		search_result_page.verifySearchRsltPage();
+		search_result_page.verifySearchResult();
 	}
 	
 	//******************Search Result Page - To ensure links/images are responding successfully and none of them are broken********
@@ -73,6 +75,7 @@ public class SearchResultPage_SD extends TestBase {
 	@Test(priority=3)
 	@Then("^User selects Register Now orange button$")
 	public void user_selects_Register_Now_orange_button() {
+		search_result_page.checkToolTip();
 		search_result_page.clickRegisNowBtn();
 
 	}
@@ -113,15 +116,15 @@ public class SearchResultPage_SD extends TestBase {
 	@Test(priority=5)
 	@Then("^User verify that the Add to Booking button is present$")
 	public void user_verify_that_the_Add_to_Booking_button_is_present() throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		search_result_page.verifyAddBookbtn();
 	}
 
 	@Then("^User Clicks Add to booking button$")
 	public void user_Clicks_Add_to_booking_button() throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(000);
 		search_result_page.clickAddBookBtn();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		//search_result_page.clickRegBtnOnPopUp();
 		//search_result_page.clickLogBtnOnPopUp();
 	}
@@ -139,7 +142,8 @@ public class SearchResultPage_SD extends TestBase {
 	
 	@Then("^User close the Pop Up to navigate back to search results screen$")
 	public void User_close_the_Pop_Up_to_navigate_back_to_search_results_screen() {
-		search_result_page.closePopUp();	
+		search_result_page.closePopUp();
+		search_result_page.verifySearchRsltPage();
 	}
 	
 	//****************Scenario: Non Logged in user - Search Result Page - Click Add to Booking button and click REGISTER****
@@ -247,61 +251,97 @@ public class SearchResultPage_SD extends TestBase {
 	
 //***********************Non Logged in user - Search Result Page - Click Property Name link********************
 		@Test(priority=10)
-		@Then("^User clicks the property name link on the search result page$")
+		@Then("^User clicks the property name link on the search result page, verifies the property details screen and navigate back to search screen$")
 		public void User_clicks_the_property_name_link_on_the_search_result_page() throws InterruptedException{
 			search_result_page.clickPropNameLinks();	
 		}
 
-		@Then("^User verifies the property details page$")
-		public void User_verifies_the_property_details_page() {
-			
-		}
-		
-		@Then("^User navigate back to search result page$")
-		public void User_navigate_back_to_search_result_page() {
-
-		}
 		
 //***********************Non Logged in user - Search Result Page - Click Room Name link********************
 		@Test(priority=11)
-		@Then("^User clicks the Room name link on the search result page$")
+		@Then("^User clicks the Room name link on the search result page,verifies the Room details page and navigate back to result page$")
 		public void User_clicks_the_Room_name_link_on_the_search_result_page() throws InterruptedException {
 			search_result_page.clickRoomNameLinks();
 			
 		}
+		
+//***********************Non Logged in user - Search Result Page - Click Load more link********************
+		@Test(priority=12)
+		@Then("^User clicks the Load more button on the screen$")
+		public void User_clicks_the_Load_more_button_on_the_screen() throws InterruptedException {
+			search_result_page.clickLoadMoreLink();
+		}
+		
+		
+//********************Non Logged in user - Search Result Page – Select property pin on the Map and verify property rooms section and click add to booking widget*****************************************
+		
+		@Test(priority=13)
+		@Then("^User Switch on Map view$")
+		public void User_Switch_on_Map_view(){
+			search_result_page.switchMapView();
+			search_result_page.verifyMapScreen();
+		}
 
-		@Then("^User verifies the Room details page$")
-		public void User_verifies_the_Room_details_page() {
+		@Then("^User clicks the property pin on the map$")
+		public void User_clicks_the_property_pin_on_the_map() throws InterruptedException {
+			search_result_page.selectPropertyFromFilter();
+			search_result_page.selectPropertyPinOnMap();
+			
+		}
+
+		@Then("^user verify the rooms section underneath the map$")
+		public void user_verify_the_rooms_section_underneath_the_map() {
+			search_result_page.verifyAddBookbtn();
+
+		}
+
+		@Then("^User clicks add to basket button$")
+		public void User_clicks_add_to_basket_button() throws InterruptedException {
+			search_result_page.clickAddBookBtn();
+			search_result_page.verifyPopUpTitle();
+			search_result_page.verifyPopUpBtns();
+
+		}
+		
+//******************Non Logged in user - Search Result Page – Select property pin on the Map and Click property link on the property details call out box******************************************
+		
+		@Test(priority=14)
+		@Then("^User Switch to the Map view$")
+		public void User_Switch_to_the_Map_view(){
+			search_result_page.switchMapView();
+			search_result_page.verifyMapScreen();
+		}
+
+		@Then("^User click the property pin on the map$")
+		public void User_click_the_property_pin_on_the_map() throws InterruptedException {
+			search_result_page.selectPropertyFromFilter();
+			search_result_page.selectPropertyPinOnMap();
+			
+		}
+
+		@Then("^user verify the property details call out box, clicks the property link and verify the property details screen$")
+		public void user_verify_the_property_details_call_out_box() {
+			search_result_page.clickPropertyLinkOnCallOutBox();
 			
 		}
 		
-		@Then("^User navigate back to result page$")
-		public void User_navigate_back_to_result_page() {
-
-		}
 		
-//***********************Non Logged in user - Search Result Page - Click Login to view pricing link********************
-		@Test(priority=12)
-		@Then("^User clicks the Login to view pricing link on the search result page$")
-		public void User_clicks_the_Login_to_view_pricing_link_on_the_search_result_page() throws InterruptedException {
-			search_result_page.clickViewPriceLinks();
-					
-		}
-
-		@Then("^User verifies the Login page$")
-		public void User_verifies_the_Login_page() {
-					
-		}
-				
-		@Then("^User navigate back to searchresult page$")
-		public void User_navigate_back_to_searchresult_page() {
-
-		}
+//****************Non Logged in user - Search Result Page – Select property pin on the Map and click rooms link displaying on room list underneath the map view******************************************
 		
-//***********************Non Logged in user - Search Result Page - Click Load more link********************
-		@Test(priority=13)
-		@Then("^User clicks the Load more button on the screen$")
-		public void User_clicks_the_Load_more_button_on_the_screen() throws InterruptedException {
-			search_result_page.clickLoadMoreBtn();
+		@Test(priority=15)
+		@Then("^User Switch on Map view and clicks the property pin on the map$")
+		public void User_Switch_on_Map_view_and_clicks_the_property_pin_on_the_map() throws InterruptedException{
+			search_result_page.switchMapView();
+			search_result_page.verifyMapScreen();
+			search_result_page.selectPropertyFromFilter();
+			search_result_page.selectPropertyPinOnMap();
 		}
+
+		@Then("^user verify the rooms section underneath the map and clicks the room link and verify$")
+		public void user_verify_the_rooms_section_underneath_the_map_and_clicks_the_room_link_and_verify() {
+			search_result_page.clickRoomLinkUnderneath();
+
+		}
+
+
 }

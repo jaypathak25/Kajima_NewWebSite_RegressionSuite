@@ -1,6 +1,10 @@
 package kajima.newnhswebsite.stepDefinition;
 
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import cucumber.api.java.en.Given;
@@ -13,14 +17,14 @@ import kajima.newnhswebsite.pom_pages.LoginPage;
 import kajima.newnhswebsite.pom_pages.SearchResultPage;
 
 
-public class CommonSteps_SD extends TestBase  {
+public class Commonsteps_SD extends TestBase  {
 	
 
 	
 	
 	
 	//*********************Before test method*********************************************
-	@BeforeTest
+	@BeforeClass
 	@Given("^User opens browser and enters the New NHS Pre Prod URL$")
 	public void user_opens_browser_and_enters_the_New_NHS_Pre_Prod_URL(){
 		TestBase.intialisation();
@@ -28,7 +32,7 @@ public class CommonSteps_SD extends TestBase  {
 	
 	
 	//***********************************After test method************************************************//
-	@AfterTest
+	@AfterClass
 	@Then("^user quit the browser$")
 	public void user_quit_the_browser() {
 		driver.quit(); 

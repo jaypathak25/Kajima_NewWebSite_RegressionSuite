@@ -1,7 +1,7 @@
 
 #Author: Jay Pathak
 #Comment: New NHS website  - Search Result Page Regression 
-Feature: Search Result page scenarios
+Feature: Non logged in users - Search Result page scenarios
 
 #User Story : As a user i should be able to see search result page, verify my search results, perform new search, able to navigate through all the links/images/buttons etc
 #also i should be able to apply different filters to refine my search .
@@ -23,7 +23,7 @@ Background:
 #Scenario: Search Result Page - Click all the links/images, navigate to relevant screen and then Navigate back to previous screen
     #Then User expect to click all the Search Results page links/images one by one and click back
     #And user quit the browser
-     
+
 @Test3
 Scenario: Non Logged in user  - Search Result Page - Click Register Now button on your booking widget
     Then User selects Register Now orange button
@@ -78,30 +78,63 @@ Scenario: Non Logged in user - Search Result Page - verify Hide/show rooms links
 		Then User verifies the show rooms option on the page
 		And User selects the show rooms link and verify the result
 		And user quit the browser
-
+     
 @Test10
 Scenario: Non Logged in user - Search Result Page - Click Property Name link
-		Then User clicks the property name link on the search result page 
-		And User verifies the property details page
-		And User navigate back to search result page
+		Then User clicks the property name link on the search result page, verifies the property details screen and navigate back to search screen 
 		And user quit the browser
 
 @Test11
 Scenario: Non Logged in user - Search Result Page - Click Room Name link
-		Then User clicks the Room name link on the search result page 
-		And User verifies the Room details page
-		And User navigate back to result page
-		And user quit the browser	
+		Then User clicks the Room name link on the search result page,verifies the Room details page and navigate back to result page
+		And user quit the browser
+
 
 @Test12
-Scenario: Non Logged in user - Search Result Page - Click Login to view pricing link
-		Then User clicks the Login to view pricing link on the search result page 
-		And User verifies the Login page
-		And User navigate back to search result page
-		And user quit the browser
-@Test13
 Scenario: Non Logged in user - Search Result Page - Click Load more link
 		Then User clicks the Load more button on the screen
 		And user quit the browser
+	
+@Test13
+Scenario: Non Logged in user - Search Result Page – Select property pin on the Map and verify property rooms section and click add to booking widget
+    Then User Switch on Map view
+    And User clicks the property pin on the map
+    And user verify the rooms section underneath the map 
+    And User clicks add to basket button
+    And user quit the browser
+  	  
+@Test14
+Scenario: Non Logged in user - Search Result Page – Select property pin on the Map and Click property link on the property details call out box
+    Then User Switch to the Map view
+    And User click the property pin on the map
+    And user verify the property details call out box, clicks the property link and verify the property details screen
+    And user quit the browser
+    
+@Test15
+Scenario: Non Logged in user - Search Result Page – Select property pin on the Map and click rooms link displaying on room list underneath the map view
+    Then User Switch on Map view and clicks the property pin on the map
+    And user verify the rooms section underneath the map and clicks the room link and verify
+    And user quit the browser
+    
+#Need to run manually 	
+Scenario: Non Logged in user - Search Result Page - verify Sorting filter 
+     Then verify that the default sorting selected is with distance when search by property name
+     And User ensure that Property name heading displayed with distance in miles 
+     Then User clicks on Homepage Image and navigate back to Home page
+     Then clicks on Find a Room button and navigate to search result screen
+     Then verify that the default sorting selected is by property name in ascending alphabatical order 
+     Then User selects the Sorting drop down and selects the option by property name in ascending alphabatical order 
+     And user quit the browser
+    
+
+		
+
+
+
+
+
+
+
+
 
 

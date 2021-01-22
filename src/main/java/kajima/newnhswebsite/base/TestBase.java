@@ -16,6 +16,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -57,7 +58,12 @@ public class TestBase {
 	System.out.print("you are using "+browserName+" browser");
     if (browserName.equals("chrome")) {
 	System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\Automation\\Jarfiles\\chromedriver.exe");
-		driver = new ChromeDriver();
+	ChromeOptions options = new ChromeOptions();
+	options.addArguments("window-size=1400,800");
+	options.addArguments("headless");
+	
+	
+		driver = new ChromeDriver(options);
 		
 		 }else if (browserName.equals("firefox")) {
 		System.setProperty("webdriver.gecko.driver", "C:\\Users\\User\\Desktop\\Automation\\Jarfiles\\geckodriver.exe"); 
@@ -71,11 +77,5 @@ public class TestBase {
 	driver.manage().timeouts().implicitlyWait(TestUtils.Implicit_Time_Out, TimeUnit.SECONDS);
 	driver.get(prop.getProperty("url"));
 	}
-   
-
-   
-
-   
-   
-  }
+ }
 

@@ -11,16 +11,16 @@ import kajima.newnhswebsite.base.TestBase;
 public class LoginPage extends TestBase {
 	
 	
-	 @FindBy(xpath = "//a[contains(.,'Login')]") 
+	 @FindBy(xpath = "//li[@class='header__nav-item']/a[@href = '/sign-in' and contains(.,'Sign in')]") 
 	 WebElement loginBtn;
 	  
-	  @FindBy(xpath = "//input[@id = 'user_email']") 
+	  @FindBy(xpath = "//input[@id = 'email']") 
 	  WebElement entrEmail;
 	  
-	  @FindBy(xpath = "//input[@id = 'user_password']") 
+	  @FindBy(xpath = "//input[@id = 'password']") 
 	  WebElement entrPswd;
 	  
-	  @FindBy(xpath = "//input[@name = 'commit']") 
+	  @FindBy(xpath = "//input[@value = 'Sign in']") 
 	  WebElement submtLoginBtn;
 	  
 	  @FindBy (xpath = "//a[text() = 'Basket']")
@@ -36,13 +36,15 @@ public class LoginPage extends TestBase {
 	    
 	  public void loginToApp() throws InterruptedException { 
 		 if(loginBtn.isDisplayed()) {
+			 Thread.sleep(2000);
 			 loginBtn.click(); 
+			 Thread.sleep(2000);
 		 }if (entrEmail.isDisplayed()) {
 			 Thread.sleep(2000);
-			 entrEmail.sendKeys("r.gellar@example.com");
+			 entrEmail.sendKeys("newbooker@example.com");
 		 }if(entrPswd.isDisplayed()) {
 			 Thread.sleep(2000);
-			 entrPswd.sendKeys("123456");
+			 entrPswd.sendKeys("Dqt8zHME");
 		 }if(submtLoginBtn.isDisplayed()) {
 			 Thread.sleep(2000);
 			 submtLoginBtn.click(); 

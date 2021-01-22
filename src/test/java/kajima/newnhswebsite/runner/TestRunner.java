@@ -23,7 +23,7 @@ import cucumber.api.CucumberOptions;
 				
 				strict = true, //it will check if any step is not defined in step definition file
 				
-				dryRun = false //to check the mapping is proper between feature file and step def file
+				dryRun = false //to check the mapping is proper between feature file and step def file, make it true and run from here
 				
 			//   tags = {"@Regression}
 		)
